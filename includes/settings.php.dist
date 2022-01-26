@@ -3,7 +3,7 @@
 
 $password = '098f6bcd4621d373cade4e832627b4f6'; // MD5 hashed password
  // 1. Create new md5 from password: /stringtomd5.php?string=xxx
- // 2. Update the password above. Default password is "test".
+ // 2. Update the password above. Default password is "test" (md5 : 098f6bcd4621d373cade4e832627b4f6)
 
 $settings = array();
 $settings['lang'] = 'en'; // Used to change site language, and on the <html> lang attribute

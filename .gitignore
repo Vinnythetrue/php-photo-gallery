@@ -4,3 +4,4 @@ thumbnails/*
 .buildpath
 .git
 .htaccess
+/includes/settings.php
