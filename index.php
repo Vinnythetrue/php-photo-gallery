@@ -17,7 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
 // <<<<<<<<<<<<<<<<<<<<
 // Validate the _GET category input for security and error handling
 // >>>>>>>>>>>>>>>>>>>>
-$HTML_navigation = '<li><a href="/">' . $translator->string('Home') . '</a></li>';
+$HTML_navigation = '<li><a href="' . $settings['home_url'] . '">' . $translator->string('Home') . '</a></li>';
 
 if (isset($_GET['category'])) {
   $HTML_navigation .= '<li><a href="index.php">' . $translator->string('Categories') . '</a></li>';
