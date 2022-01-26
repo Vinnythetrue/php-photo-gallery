@@ -3,7 +3,15 @@
 // Note: This avoids a problem where some servers might add a trailing slash, and others not..
 define('BASE_PATH', rtrim(realpath(dirname(__FILE__)), "/") . '/');
 require BASE_PATH . 'includes/global_functions.php';
-require BASE_PATH . 'includes/settings.php'; // Note. Include a file in same directory without slash in front of it!
+
+$settingfilename = BASE_PATH . 'includes/settings.php';
+$distsettingfilename = $settingfilename . '.dist';
+if( !is_file($settingfilename) )
+{
+  copy( $distsettingfilename, $settingfilename);
+}
+
+require $settingfilename; // Note. Include a file in same directory without slash in front of it!
 require BASE_PATH . 'lib/translator_class.php';
 
 $translator = new translator($settings['lang']);
