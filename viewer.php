@@ -90,7 +90,10 @@ function list_files($settings)
         } else {
             $path_to_file = $thumbs_directory . '/thumb-' . $value;
             if (file_exists($path_to_file) !== true) {
-                createThumbnail($value, $directory, $thumbs_directory, 400, 400);
+                if( createThumbnail($value, $directory, $thumbs_directory, 400, 400) === false )
+                {
+                unset($item_arr["$key"]);
+                }
             }
         }
     }
@@ -102,6 +105,18 @@ function createThumbnail($filename, $source_directory, $thumbs_directory, $max_w
     $path_to_source_file = $source_directory . '/' . $filename;
     $path_to_thumb_file = $thumbs_directory . '/thumb-' . $filename;
     $source_filetype = exif_imagetype($path_to_source_file);
+
+    switch ($source_filetype) {
+      case IMAGETYPE_JPEG:
+      case IMAGETYPE_PNG:
+      case IMAGETYPE_GIF:
+      case IMAGETYPE_WEBP:
+        break;
+  
+      default:
+        return false;
+    }
+
     if (!file_exists($thumbs_directory)) {
         if (!mkdir($thumbs_directory, 0775, true)) {
             echo 'Error: The thumbnails directory could not be created.';
