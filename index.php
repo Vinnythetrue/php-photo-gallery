@@ -110,6 +110,7 @@ function category_previews($category, $category_json_file)
       $item_arr = array_diff(scandir($thumbs_directory), array('..', '.'));
       foreach ($item_arr as $key => $value) {
         $previews_html = '<div style="background:url(thumbnails/' . $category . '/' . rawurlencode($item_arr["$key"]) . ');" class="category_preview_img"></div>'; // add a dot in front of = to return all images
+        break;
       }
       $category_data = json_encode(array('preview_image' => $item_arr["$key"]));
       file_put_contents($thumbs_directory . '/' . $category_json_file, $category_data);
